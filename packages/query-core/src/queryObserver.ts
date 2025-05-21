@@ -67,6 +67,7 @@ export class QueryObserver<
   #currentRefetchInterval?: number | false
   #trackedProps = new Set<keyof QueryObserverResult>()
 
+  // QueryObserver 생성자 함수
   constructor(
     client: QueryClient,
     public options: QueryObserverOptions<
@@ -89,7 +90,7 @@ export class QueryObserver<
     }
 
     this.bindMethods()
-    this.setOptions(options)
+    this.setOptions(options) // 옵션 설정 (staleTime, gcTime 등)
   }
 
   protected bindMethods(): void {

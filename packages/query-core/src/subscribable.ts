@@ -1,5 +1,5 @@
 export class Subscribable<TListener extends Function> {
-  protected listeners = new Set<TListener>()
+  protected listeners = new Set<TListener>() // 옵저버 목록
 
   constructor() {
     this.subscribe = this.subscribe.bind(this)

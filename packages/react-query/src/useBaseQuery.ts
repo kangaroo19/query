@@ -1,4 +1,6 @@
 'use client'
+
+// 1. 사용할 모듈 임포트
 import * as React from 'react'
 
 import { isServer, noop, notifyManager } from '@tanstack/query-core'
@@ -24,6 +26,7 @@ import type {
 } from '@tanstack/query-core'
 import type { UseBaseQueryOptions } from './types'
 
+// 2. useBaseQuery 함수 정의
 export function useBaseQuery<
   TQueryFnData,
   TError,
@@ -57,9 +60,10 @@ export function useBaseQuery<
   ;(client.getDefaultOptions().queries as any)?._experimental_beforeQuery?.(
     defaultedOptions,
   )
-
+  // 3. production 환경 아닌경우?
   if (process.env.NODE_ENV !== 'production') {
     if (!defaultedOptions.queryFn) {
+      // 이 에러는 useQuery 사용 시 queryFn을 빼보면 확인가능함
       console.error(
         `[${defaultedOptions.queryHash}]: No queryFn was passed as an option, and no default queryFn was found. The queryFn parameter is only optional when using a default queryFn. More info here: https://tanstack.com/query/latest/docs/framework/react/guides/default-query-function`,
       )
@@ -88,7 +92,7 @@ export function useBaseQuery<
         defaultedOptions,
       ),
   )
-
+  console.log('observer', observer)
   // note: this must be called before useSyncExternalStore
   const result = observer.getOptimisticResult(defaultedOptions)
 

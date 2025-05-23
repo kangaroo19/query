@@ -43,7 +43,7 @@ export class QueryObserver<
   TQueryData = TQueryFnData,
   TQueryKey extends QueryKey = QueryKey,
 > extends Subscribable<QueryObserverListener<TData, TError>> {
-  #client: QueryClient
+  #client: QueryClient // QueryClientProvider에서 설정한 client 값
   #currentQuery: Query<TQueryFnData, TError, TQueryData, TQueryKey> = undefined!
   #currentQueryInitialState: QueryState<TQueryData, TError> = undefined!
   #currentResult: QueryObserverResult<TData, TError> = undefined!

@@ -51,7 +51,7 @@ export function useBaseQuery<
       )
     }
   }
-
+  // useQuery에 queryClient가 없는 경우엔 client 값은 QueryClientProvider에서 설정한 client 값
   const client = useQueryClient(queryClient)
   const isRestoring = useIsRestoring()
   const errorResetBoundary = useQueryErrorResetBoundary()
